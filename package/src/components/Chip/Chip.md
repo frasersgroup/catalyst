@@ -17,18 +17,13 @@ const onDelete = () => {
 <div>
   <div style={{ display: "flex" }}>
     <div style={{ marginRight: "1rem" }}>
-      <Chip color="error" label="status chip" />
+      <Chip label="Chip" />
     </div>
     <div style={{ marginRight: "1rem" }}>
-      <Chip label="deletable chip" color="primary" onDelete={onDelete} />
+      <Chip status="danger" label="Status Chip" />
     </div>
     <div style={{ marginRight: "1rem" }}>
-      <Chip
-        label="small deletable chip for multiselect"
-        color="secondary"
-        size="small"
-        onDelete={onDelete}
-      />
+      <Chip label="Deletable Chip" onDelete={onDelete} />
     </div>
   </div>
 </div>;
@@ -59,7 +54,6 @@ function ChipsArray() {
       {chipData.map(data => {
         return (
           <Chip
-            color="primary"
             key={data.key}
             label={data.label}
             onDelete={handleDelete(data)}
@@ -95,12 +89,10 @@ function ChipsArray() {
       {chipData.map(data => {
         return (
           <Chip
-            color="secondary"
-            size="small"
             key={data.key}
             label={data.label}
             onDelete={handleDelete(data)}
-            style={{ marginRight: "4px" }}
+            style={{ marginRight: "8px" }}
           />
         );
       })}
@@ -111,12 +103,57 @@ function ChipsArray() {
 <ChipsArray />;
 ```
 
+##### Status chip
+
+The Status chip is used to indicate the status of data. However since the status is represented only with color, the text should fully describe the status so that color-blind people do not lose any information.
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip status="info" label="New Product" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip status="success" label="Visible" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip status="warning" label="Incomplete" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip status="danger" label="Hidden" />
+  </div>
+</div>
+```
+
+It may help to include icons.
+
+```jsx
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import WarningIcon from "@material-ui/icons/Warning";
+import ErrorIcon from '@material-ui/icons/Error';
+import InfoIcon from '@material-ui/icons/Info';
+
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip icon={<InfoIcon />} status="info" label="New Product" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip icon={<CheckCircleIcon />} status="success" label="Visible" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip icon={<WarningIcon />} status="warning" label="Incomplete" />
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Chip icon={<ErrorIcon />} status="danger" label="Hidden" />
+  </div>
+</div>
+```
+
 ##### Error chip
 
 The Error chip is used to indicate an error status, such as when an order has been cancelled.
 
 ```jsx
-<Chip color="error" label="Order Cancelled" />
+<Chip status="error" label="Order Cancelled" />
 ```
 
 ##### All Chip variants
@@ -131,94 +168,28 @@ function ChipsArray() {
 
   const [chipData, setChipData] = React.useState([
     [
-      {
-        label: "primary-default",
-        color: "primary",
-        variant: "default"
-      },
-      { label: "primary-outlined", color: "primary", variant: "outlined" },
-      {
-        label: "primary-deletable",
-        color: "primary",
-        key: 0,
-        onDelete: handleDelete
-      },
-      {
-        label: "primary-deletable-outlined",
-        color: "primary",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "primary-default" },
+      { label: "primary-deletable", key: 0, onDelete: handleDelete },
     ],
     [
-      { label: "secondary-default", color: "secondary", variant: "default" },
-      { label: "secondary-outlined", color: "secondary", variant: "outlined" },
-      {
-        label: "secondary-deletable",
-        color: "secondary",
-        onDelete: handleDelete
-      },
-      {
-        label: "secondary-deletable-outlined",
-        color: "secondary",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "info-default", status: "info" },
+      { label: "info-deletable", status: "info", onDelete: handleDelete },
     ],
     [
-      { label: "error-default", color: "error" },
-      { label: "error-outlined", color: "error", variant: "outlined" },
-      {
-        label: "error-deletable-outlined",
-        color: "error",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "success-default", status: "success" },
+      { label: "success-deletable", status: "success", onDelete: handleDelete },
     ],
     [
-      { label: "success-default", color: "success" },
-      { label: "success-outlined", color: "success", variant: "outlined" },
-      { label: "success-deletable", color: "success", onDelete: handleDelete },
-      {
-        label: "success-deletable-outlined",
-        color: "success",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "warning-default", status: "warning" },
+      { label: "warning-deletable", status: "warning", onDelete: handleDelete },
     ],
     [
-      { label: "info-default", color: "info" },
-      {
-        label: "info-outlined",
-        color: "info",
-        variant: "outlined"
-      },
-      {
-        label: "info-deletable",
-        color: "info",
-        onDelete: handleDelete
-      },
-      {
-        label: "info-deletable-outlined",
-        color: "info",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "danger-default", status: "danger" },
+      { label: "danger-deletable", status: "danger", onDelete: handleDelete },
     ],
     [
-      { label: "danger-default", color: "danger" },
-      { label: "danger-outlined", color: "danger", variant: "outlined" },
-      {
-        label: "danger-deletable",
-        color: "danger",
-        onDelete: handleDelete
-      },
-      {
-        label: "danger-deletable-outlined",
-        color: "danger",
-        variant: "outlined",
-        onDelete: handleDelete
-      }
+      { label: "error-default", status: "error" },
+      { label: "error-deletable", status: "error", onDelete: handleDelete },
     ]
   ]);
 
@@ -230,12 +201,11 @@ function ChipsArray() {
             {chipRow.map((data, chipIndex) => {
               return (
                 <Chip
-                  color="secondary"
                   {...data}
                   key={chipIndex}
                   label={data.label}
                   onDelete={data.onDelete && data.onDelete(data)}
-                  style={{ marginRight: "4px" }}
+                  style={{ marginRight: "8px" }}
                 />
               );
             })}

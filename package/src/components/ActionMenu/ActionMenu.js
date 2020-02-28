@@ -2,18 +2,32 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import {
   Box,
-  ListItemText,
   Menu,
+  Popper,
+  Paper,
+  MenuList,
   MenuItem,
+  ListItemIcon,
+  ListItemText,
   makeStyles
 } from "@material-ui/core";
-import ChevronDownIcon from "mdi-material-ui/ChevronDown";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Button from "../Button";
 import ConfirmDialog from "../ConfirmDialog";
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    paddingRight: theme.spacing(1.5)
+  menu: {
+    marginTop: theme.spacing(0.5)
+  },
+  menuItem: {
+    maxWidth: 320,
+    whiteSpace: "normal"
+  },
+  icon: {
+    "& > svg": {
+      fontSize: 20
+    }
   }
 }));
 
@@ -67,6 +81,74 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
     setOpen(false);
   }
 
+  function renderListItem(option, index) {
+    const {
+      icon,
+      label,
+      details,
+      isDisabled,
+      cancelActionText,
+      confirmActionText,
+      confirmTitle,
+      confirmMessage,
+      onClick
+    } = option;
+
+    const callback = (event) => handleMenuItemClick({ event, index, onClick });
+
+    const listItemIconMarkup = icon ? (
+      <ListItemIcon className={classes.icon}>
+        {icon}
+      </ListItemIcon>
+    ) : null;
+
+    const boxMarkup = (
+      <Fragment>
+        {listItemIconMarkup}
+        <ListItemText
+          primary={label}
+          secondary={details}
+        />
+      </Fragment>
+    )
+
+    if (confirmTitle || confirmMessage) {
+      return (
+        <ConfirmDialog
+          cancelActionText={cancelActionText}
+          confirmActionText={confirmActionText}
+          title={confirmTitle}
+          message={confirmMessage}
+          onConfirm={callback}
+        >
+          {({ openDialog }) => (
+            <MenuItem
+              key={index}
+              disabled={isDisabled}
+              onClick={openDialog}
+              className={classes.menuItem}
+            >
+              {boxMarkup}
+            </MenuItem>
+          )}
+        </ConfirmDialog>
+      );
+    } else {
+      return (
+        <MenuItem
+          key={index}
+          disabled={isDisabled}
+          onClick={callback}
+          className={classes.menuItem}
+        >
+          {boxMarkup}
+        </MenuItem>
+      )
+    }
+  }
+
+  const buttonMarkup = children ? children : <MoreHorizIcon />
+
   return (
     <Fragment>
       <Button
@@ -75,94 +157,37 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
         className={classes.button}
         onClick={handleToggle}
         ref={anchorRef}
+        endIcon={children ? <ArrowDropDownIcon /> : null}
         {...otherProps}
       >
-        {children}
-        <Box display="flex" paddingLeft={1}>
-          <ChevronDownIcon />
-        </Box>
+        {buttonMarkup}
       </Button>
       <Menu
-        MenuListProps={{ disablePadding: true }}
+      dense
+        className={classes.menu}
         anchorEl={anchorRef.current}
         id="action-menu"
-        keepMounted
         open={open}
         onClose={handleClose}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
       >
-        <MenuItem key="default-label" disabled>
-          <Box maxWidth={320} whiteSpace="normal">
-            <ListItemText
-              primary={children}
-            />
-          </Box>
-        </MenuItem>
         {options.map((option, index) => {
-          const {
-            label,
-            details,
-            isDisabled,
-            cancelActionText,
-            confirmActionText,
-            confirmTitle,
-            confirmMessage,
-            onClick
-          } = option;
-
-          const callback = (event) => handleMenuItemClick({ event, index, onClick });
-
-          if (confirmTitle || confirmMessage) {
-            return (
-              <ConfirmDialog
-                key={`dialog-${index}`}
-                cancelActionText={cancelActionText}
-                confirmActionText={confirmActionText}
-                title={confirmTitle}
-                message={confirmMessage}
-                onConfirm={callback}
-              >
-                {({ openDialog }) => (
-                  <MenuItem
-                    key={index}
-                    disabled={isDisabled}
-                    onClick={openDialog}
-                  >
-                    <Box maxWidth={320} whiteSpace="normal">
-                      <ListItemText
-                        primary={label}
-                        secondary={details}
-                      />
-                    </Box>
-                  </MenuItem>
-                )}
-              </ConfirmDialog>
-            );
-          }
-
           return (
-            <MenuItem
-              key={index}
-              disabled={isDisabled}
-              onClick={callback}
-            >
-              <Box maxWidth={320} whiteSpace="normal">
-                <ListItemText
-                  primary={label}
-                  secondary={details}
-                />
-              </Box>
-            </MenuItem>
-          );
+            renderListItem(option, index)
+          )
         })}
       </Menu>
     </Fragment>
   );
 });
-
-ActionMenu.defaultProps = {
-  color: "primary",
-  variant: "outlined"
-};
 
 ActionMenu.propTypes = {
   /**

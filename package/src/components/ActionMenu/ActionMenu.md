@@ -9,21 +9,38 @@ The Catalyst ActionMenu is based on the the Material-UI example for [Menus](http
 This is basic example of how to implement the ActionMenu.
 
 ```jsx
+import VisibilityIcon from "@material-ui/icons/VisibilityOutlined";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOffOutlined";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+import EditIcon from "@material-ui/icons/EditOutlined";
+import DeleteIcon from "@material-ui/icons/DeleteOutlined";
+
 const options = [{
-  label: "Open"
+  label: "Make visible",
+  icon: <VisibilityIcon />
 }, {
-  label: "Archived"
+  label: "Make hidden",
+  icon: <VisibilityOffIcon />
 }, {
-  label: "Shipped"
+  label: "Add to categories…",
+  icon: <AddCircleOutlineIcon />
 }, {
-  label: "Canceled"
-} ];
+  label: "Remove from categories…",
+  icon: <RemoveCircleOutlineIcon />
+}, {
+  label: "Edit attributes",
+  icon: <EditIcon />
+}, {
+  label: "Archive",
+  icon: <DeleteIcon />
+}];
 
 <ActionMenu
   options={options}
   onSelect={(option, index) => alert(`Selected option "${option.label}" at index (${index})`)}
 >
-  Set status
+  Bulk Actions
 </ActionMenu>
 ```
 
@@ -38,35 +55,35 @@ const options = [{
     console.log("Filter by file");
   }
 }, {
-  label: "Publish",
+  label: "Publish…",
   confirmTitle: "Publish 32 products",
   confirmMessage: "Are you sure you want to publish 32 products to your storefront?",
   onClick: () => {
     console.log("Published 32 products");
   }
 }, {
-  label: "Make Visible",
+  label: "Make visible…",
   confirmTitle: "Make 32 products visible",
   confirmMessage: "Are you sure you want to make 32 products visible to customers?",
   onClick: () => {
     console.log("Made 32 products visible");
   }
 }, {
-  label: "Make Hidden",
+  label: "Make hidden…",
   confirmTitle: "Make 32 products hidden",
   confirmMessage: "Are you sure you want to make 32 products hidden from customers?",
   onClick: () => {
     console.log("Made 32 products hidden");
   }
 }, {
-  label: "Duplicate",
+  label: "Duplicate…",
   confirmTitle: "Duplicate 32 products",
   confirmMessage: "Are you sure you want to duplicate 32 products?",
   onClick: () => {
     console.log("Duplicated 32 products");
   }
 }, {
-  label: "Archive",
+  label: "Archive…",
   confirmTitle: "Archive 32 products",
   confirmMessage: "Are you sure you want to archive 32 products? This will hide them from both admins and customers.",
   onClick: () => {

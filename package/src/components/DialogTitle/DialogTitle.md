@@ -17,3 +17,13 @@ import Dialog from "@material-ui/core/Dialog";
   <DialogTitle>Archive 24 products?</DialogTitle>
 </Dialog>
 ```
+
+
+If you add an `onClose` function, it will automatically add a close button.
+
+```jsx
+const handleClose = () => { };
+<div style={{ paddingLeft: 100, background: "#002740" }}>
+  <DialogTitle onClose={handleClose}>Archive 24 products?</DialogTitle>
+</div>
+```

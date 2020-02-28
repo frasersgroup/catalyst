@@ -1,33 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { CircularProgress, Button as MuiButton, makeStyles } from "@material-ui/core";
+import {
+  CircularProgress,
+  Button as MuiButton,
+  Typography,
+  makeStyles
+} from "@material-ui/core";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles((theme) => ({
   buttonProgress: {
     marginLeft: theme.spacing()
   },
-  containedPrimary: {
-    "color": theme.palette.primary.contrastText,
-    "backgroundColor": theme.palette.colors.red,
-    "&:hover": {
-      "backgroundColor": theme.palette.colors.redHover,
-      // Reset on touch devices, it doesn't add specificity
-      "@media (hover: none)": {
-        backgroundColor: theme.palette.colors.redHover
-      }
-    }
-  },
-  outlinedPrimary: {
-    "color": theme.palette.colors.red,
-    "border": `1px solid ${theme.palette.colors.red}`,
-    "&:hover": {
-      "border": `1px solid ${theme.palette.colors.redBorder}`,
-      "backgroundColor": theme.palette.colors.redBackground,
-      // Reset on touch devices, it doesn't add specificity
-      "@media (hover: none)": {
-        backgroundColor: "transparent"
-      }
-    }
+  exclude: {
+    color: theme.palette.secondary.main
   }
 }));
 
@@ -37,36 +23,27 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} A React component
  */
 const Button = React.forwardRef(function Button(props, ref) {
-  const { children, color, disabled, isWaiting, ...otherProps } = props;
+  const { children, disabled, dropdown, filter, exclude, isWaiting, endIcon, ...otherProps } = props;
   const classes = useStyles();
 
-  if (color === "error") {
-    return (
-      <MuiButton
-        classes={{
-          containedPrimary: classes.containedPrimary,
-          outlinedPrimary: classes.outlinedPrimary
-        }}
-        color="primary"
-        disabled={disabled || isWaiting}
-        ref={ref}
-        {...otherProps}
-      >
-        {children}
-        {isWaiting && <CircularProgress size={16} className={classes.buttonProgress} />}
-      </MuiButton>
-    );
-  }
+  const childrenMarkup = filter ? (
+    <Fragment>
+      <span className={exclude ? classes.exclude : undefined}>{exclude && "Exclude "}{filter}</span>
+      <Typography>&nbsp;· {children}</Typography>
+    </Fragment>
+  ) : children;
+
+  const endIconMarkup = filter || dropdown ? <ArrowDropDownIcon /> : endIcon;
 
   return (
     <MuiButton
-      color={color}
       disabled={disabled || isWaiting}
       ref={ref}
+      endIcon={endIconMarkup}
       {...otherProps}
     >
-      {children}
-      {isWaiting && <CircularProgress size={16} className={classes.buttonProgress} />}
+      {childrenMarkup}
+      {isWaiting && <CircularProgress color="inherit" size={16} className={classes.buttonProgress} />}
     </MuiButton>
   );
 });

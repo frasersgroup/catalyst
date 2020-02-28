@@ -3,40 +3,120 @@
 Buttons allow users to take an action such as add, save, cancel or delete. Buttons should clearly and simply communicate the action that will happen when they are pressed.
 
 ```jsx noeditor
-<div style={{ marginBottom: "2rem", border: "1px solid #e6e6e6", padding: "1rem"}}>
-  <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evently", marginBottom: "1rem" }}>
-    <div style={{marginRight: "1rem"}}>
-      <Button variant="contained" color="primary">Solid</Button>
+<div style={{ marginBottom: "2rem", border: "1px solid #e6e6e6", padding: "1rem 1rem 0"}}>
+  <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button>Default</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button variant="outlined" color="primary">Outlined</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button color="primary">Primary</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button>Text-only</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button color="secondary">Secondary</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button variant="contained" color="error">Error</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button variant="text">Text</Button>
     </div>
-    <div style={{ marginRight: "1rem" }}>
-      <Button variant="outlined" color="error">Error</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button variant="text" color="primary">Text</Button>
     </div>
   </div>
-  <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evently"}}>
-    <div style={{marginRight: "1rem"}}>
-      <Button size="small" variant="contained" color="primary">Solid</Button>
+  <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button disabled>Default</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button size="small" variant="outlined" color="primary">Outlined</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button disabled color="primary">Primary</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button size="small">Text-only</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button disabled color="secondary">Secondary</Button>
     </div>
-    <div style={{marginRight: "1rem"}}>
-      <Button size="small" variant="contained" color="error">Error</Button>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button disabled variant="text" color="primary">Text</Button>
     </div>
-    <div style={{ marginRight: "1rem" }}>
-      <Button size="small" variant="outlined" color="error">Error</Button>
+  </div>
+  <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button isWaiting>Default</Button>
     </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button isWaiting color="primary">Primary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button isWaiting color="secondary">Secondary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button isWaiting variant="text" color="primary">Text</Button>
+    </div>
+  </div>
+</div>
+```
+
+Buttons can have icons.
+
+```jsx
+import AddIcon from "@material-ui/icons/Add";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
+import DeleteIcon from "@material-ui/icons/DeleteOutlined";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+<div style={{ marginBottom: "2rem", border: "1px solid #e6e6e6", padding: "1rem 1rem 0"}}>
+  <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />}>Default</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button endIcon={<ArrowDropDownIcon />} color="primary">Primary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<DeleteIcon />} color="secondary">Secondary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button endIcon={<OpenInNewIcon />} variant="text">Text</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<ArrowBackIcon />} variant="text" color="secondary">Back</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />} variant="text" color="primary">Text</Button>
+    </div>
+  </div>
+  <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "1rem" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />} disabled>Default</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button endIcon={<ArrowDropDownIcon />} disabled color="primary">Primary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<DeleteIcon />} disabled color="secondary">Secondary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />} disabled variant="text" color="primary">Text</Button>
+    </div>
+  </div>
+  <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />} isWaiting>Default</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button isWaiting color="primary">Primary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<DeleteIcon />} isWaiting color="secondary">Secondary</Button>
+    </div>
+    <div style={{marginRight: "1rem", marginBottom: "1rem"}}>
+      <Button startIcon={<AddIcon />} isWaiting variant="text" color="primary">Text</Button>
+    </div>
+  </div>
+</div>
+```
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Button filter="Vendors">Calvin Klein, Nike, and 3 more</Button>
   </div>
 </div>
 ```
