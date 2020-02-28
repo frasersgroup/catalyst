@@ -364,6 +364,7 @@ module.exports = {
         }),
         generateSection({
           componentNames: [
+            "NavBar",
             "Hero",
           ],
           name: "Layout"

@@ -33,22 +33,6 @@ export const rawMuiTheme = {
     trailingPaddingWhenDetailDrawerIsOpen: {
       paddingRight: detailDrawerWidth + (defaultSpacingUnit * 2)
     },
-    toolbar: {
-      minHeight: toolbarHeight,
-      [`${variables.breakpoints.up("xs")} and (orientation: landscape)`]: {
-        minHeight: toolbarMobileHeight,
-        paddingLeft: defaultSpacingUnit,
-        paddingRight: defaultSpacingUnit
-      },
-      [`${variables.breakpoints.up("xs")} and (orientation: portrait)`]: {
-        minHeight: toolbarMobileHeight,
-        paddingLeft: defaultSpacingUnit,
-        paddingRight: defaultSpacingUnit
-      },
-      [variables.breakpoints.up("sm")]: {
-        minHeight: toolbarHeight
-      }
-    }
   },
   props,
   overrides: css,

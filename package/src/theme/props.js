@@ -94,6 +94,9 @@ const props = {
   MuiContainer: {
     maxWidth: "lg"
   },
+  MuiToolbar: {
+    disableGutters: true
+  },
   MuiGrid: {
     spacing: 3
   },

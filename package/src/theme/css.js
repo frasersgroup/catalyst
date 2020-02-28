@@ -74,31 +74,6 @@ const css = {
       marginBottom: defaultTheme.spacing(1)
     }
   },
-  MuiAppBar: {
-    root: {
-      height: toolbarHeight,
-      [`${breakpoints.up("xs")} and (orientation: landscape)`]: {
-        height: toolbarMobileHeight
-      },
-      [`${breakpoints.up("xs")} and (orientation: portrait)`]: {
-        height: toolbarMobileHeight
-      },
-      [breakpoints.up("sm")]: {
-        height: toolbarHeight
-      }
-    },
-    colorPrimary: {
-      backgroundColor: colors.white,
-      borderBottom: `1px solid ${colors.black05}`
-    },
-    colorSecondary: {
-      backgroundColor: "#3C4950" // colors.coolGrey with 20% opacity, opaque
-    },
-    colorDefault: {
-      backgroundColor: colors.white,
-      borderBottom: `1px solid ${colors.black05}`
-    }
-  },
   MuiExpansionPanel: {
     root: {
       "&$expanded": {

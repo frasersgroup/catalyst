@@ -7,7 +7,6 @@ import {
   Tab,
   makeStyles
 } from "@material-ui/core";
-import clsx from "clsx";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ActionMenu from "../ActionMenu";
 import Button from "../Button";
@@ -36,27 +35,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between"
-
   }
 }));
 
-/**
- * @name Avatar
- * @param {Object} props Component props
- * @returns {React.Component} returns a React component
- */
 const Hero = React.forwardRef(function Hero(props, ref) {
   const { backButton, image, chip, title, subtitle, tabs, action, moreActions } = props;
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  /**
-   * Toggle branch open
-   * @returns {undefined}
-   */
-  function handleToggle() {
-    setOpen((prevOpen) => !prevOpen);
-  }
 
   return (
     <div className={classes.wrapper}>
@@ -96,16 +80,5 @@ const Hero = React.forwardRef(function Hero(props, ref) {
     </div>
   );
 });
-
-Hero.propTypes = {
-  /**
-   * The size of the component
-   */
-  expanded: PropTypes.bool,
-};
-
-Hero.defaultProps = {
-  expanded: false
-};
 
 export default Hero;
