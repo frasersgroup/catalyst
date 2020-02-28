@@ -356,26 +356,43 @@ module.exports = {
         }),
         generateSection({
           componentNames: [
-            "Chip",
+            "Select",
+            "TextField",
+            "Checkbox"
+          ],
+          name: "Inputs"
+        }),
+        generateSection({
+          componentNames: [
+            "Hero",
+          ],
+          name: "Layout"
+        }),
+        generateSection({
+          componentNames: [
+            "Avatar",
             "DataTable",
             "DataTableFilter",
-            "Toast"
+            "DataField",
           ],
           name: "Content"
         }),
         generateSection({
           componentNames: [
-            "ConfirmDialog",
-            "DialogTitle"
+            "TreeItem",
           ],
-          name: "Feedback"
+          name: "Tree"
         }),
         generateSection({
           componentNames: [
-            "Select",
-            "TextField"
+            "Banner",
+            "Chip",
+            "KeyboardShortcut",
+            "ConfirmDialog",
+            "DialogTitle",
+            "Toast"
           ],
-          name: "Inputs"
+          name: "Feedback"
         }),
         {
           name: "Themed Components",
@@ -389,9 +406,47 @@ module.exports = {
               content: "styleguide/src/sections/QuickEditCard.md"
             },
             {
+              name: "Dialog",
+              content: "styleguide/src/sections/Dialog.md"
+            },
+            {
+              name: "Drawer",
+              content: "styleguide/src/sections/Drawer.md"
+            },
+            {
               name: "Tabs",
               content: "styleguide/src/sections/Tabs.md"
             }
+          ],
+          sectionDepth: 2
+        },
+        {
+          name: "Prototypes",
+          sections: [
+            {
+              name: "MainProductTable",
+              content: "styleguide/src/prototypes/MainProductTable.md"
+            },
+            {
+              name: "CategoryProductTable",
+              content: "styleguide/src/prototypes/CategoryProductTable.md"
+            },
+            {
+              name: "EditProductRules",
+              content: "styleguide/src/prototypes/EditProductRules.md"
+            },
+            {
+              name: "RemoveProductsFromCategories",
+              content: "styleguide/src/prototypes/RemoveProductsFromCategories.md"
+            },
+            {
+              name: "AddProductsToCategories",
+              content: "styleguide/src/prototypes/AddProductsToCategories.md"
+            },
+            {
+              name: "EditProductCategories",
+              content: "styleguide/src/prototypes/EditProductCategories.md"
+            },
           ],
           sectionDepth: 2
         }
