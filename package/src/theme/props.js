@@ -91,6 +91,9 @@ const props = {
   },
 
   // Layout
+  MuiContainer: {
+    maxWidth: "lg"
+  },
   MuiGrid: {
     spacing: 3
   },

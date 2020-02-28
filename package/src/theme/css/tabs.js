@@ -7,13 +7,10 @@ import colors from "../colors";
 import variables from "../variables";
 import shadows from "../shadows";
 
-const pressShadow = `0 0 0 1px ${fade(palette.text.primary, 0.4)}, inset 0 0 0 100px ${palette.action.active}`;
+const TAB_PADDING = 1.5;
 
 const tabs = {
   MuiTabs: {
-    root: {
-      boxShadow: `inset 0 -1px ${palette.divider}`
-    },
     indicator: {
       height: 4,
       backgroundColor: "transparent",
@@ -24,8 +21,8 @@ const tabs = {
         backgroundColor: palette.primary.main,
         borderTopLeftRadius: variables.shape.borderRadius,
         borderTopRightRadius: variables.shape.borderRadius,
-        marginLeft: defaultTheme.spacing(2),
-        marginRight: defaultTheme.spacing(2),
+        marginLeft: defaultTheme.spacing(TAB_PADDING),
+        marginRight: defaultTheme.spacing(TAB_PADDING),
       }
     }
   },
@@ -33,7 +30,7 @@ const tabs = {
     root: {
       height: variables.shape.actionHeight,
       textTransform: "initial",
-      padding: [[0, defaultTheme.spacing(2)]],
+      padding: [[0, defaultTheme.spacing(TAB_PADDING)]],
       boxSizing: "border-box",
       minWidth: undefined,
       [variables.breakpoints.up('sm')]: {
@@ -41,7 +38,7 @@ const tabs = {
         minWidth: undefined,
       },
       "&:first-child": {
-        marginLeft: defaultTheme.spacing(-2)
+        marginLeft: defaultTheme.spacing(-TAB_PADDING)
       }
     },
     textColorPrimary: {

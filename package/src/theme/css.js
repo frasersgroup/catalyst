@@ -6,7 +6,6 @@ import colors from "./colors";
 import variables from "./variables";
 import shadows from "./shadows";
 
-import avatars from "./css/avatars"
 import buttons from "./css/buttons"
 import choices from "./css/choices"
 import textfields from "./css/textfields"
@@ -17,6 +16,7 @@ import tabs from "./css/tabs"
 import chips from "./css/chips"
 import overlays from "./css/overlays"
 import table from "./css/table"
+import layout from "./css/layout"
 
 const breakpoints = createBreakpoints({});
 const toolbarHeight = 80;
@@ -58,7 +58,6 @@ export const h1LetterSpacing = 0.42;
 export const smallFontIconSize = 17;
 
 const css = {
-  ...avatars,
   ...choices,
   ...buttons,
   ...textfields,
@@ -69,14 +68,7 @@ const css = {
   ...table,
   ...chips,
   ...overlays,
-  MuiContainer: {
-    maxWidthXs: {
-      maxWidth: 320,
-      [variables.breakpoints.up('xs')]: {
-        maxWidth: undefined
-      },
-    },
-  },
+  ...layout,
   MuiTypography: {
     gutterBottom: {
       marginBottom: defaultTheme.spacing(1)
