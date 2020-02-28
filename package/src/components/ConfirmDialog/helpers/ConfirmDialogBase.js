@@ -28,14 +28,14 @@ const ConfirmDialogBase = React.forwardRef(function ConfirmDialogBase(props, ref
   return (
     <Dialog
       aria-labelledby="confirm-action-dialog-title"
-      maxWidth="sm"
+      maxWidth="xs"
       fullWidth={true}
       onClose={onClose}
       open={isOpen}
       ref={ref}
       {...otherProps}
     >
-      <DialogTitle id="confirm-action-dialog-title">{title}</DialogTitle>
+      <DialogTitle id="confirm-action-dialog-title" onClose={onClose}>{title}</DialogTitle>
       {message && (
         <DialogContent>
           <DialogContentText>{message}</DialogContentText>
@@ -49,13 +49,12 @@ const ConfirmDialogBase = React.forwardRef(function ConfirmDialogBase(props, ref
       )}
 
       <DialogActions>
-        <Button onClick={onClose} color="primary" variant="outlined">
+        <Button onClick={onClose}>
           {cancelActionText}
         </Button>
         <Button
           onClick={onConfirm}
           color="primary"
-          variant="contained"
         >
           {confirmActionText}
         </Button>
@@ -102,7 +101,7 @@ ConfirmDialogBase.propTypes = {
 
 ConfirmDialogBase.defaultProps = {
   cancelActionText: "Cancel",
-  confirmActionText: "OK",
+  confirmActionText: "Confirm",
   onClose() { },
   onConfirm() { }
 };
